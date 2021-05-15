@@ -73,7 +73,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    
+    # binding.irb
   end
 
   def edit
