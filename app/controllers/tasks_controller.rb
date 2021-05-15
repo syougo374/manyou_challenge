@@ -26,15 +26,15 @@ class TasksController < ApplicationController
 
       else
         @tasks = Kaminari.paginate_array(current_user.tasks.order(id: :desc)).page(params[:page]).per(3)
-        @tasks << @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
+        # @tasks << @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
       end
       
     else
       @tasks = Kaminari.paginate_array(current_user.tasks.order(id: :desc)).page(params[:page]).per(3)
-      # binding.pry
+      # @labels = Label.all
     end
   end
-
+  
   def new
     @task = Task.new
   end
@@ -42,24 +42,22 @@ class TasksController < ApplicationController
     return Task.all unless search
     Task.where(['title LIKE ?', "%#{search}%"])
   end
-
+  
   def create
-    @task = current_user.tasks.build(task_params)
     # @task = Task.new(task_params)
-    # if params[:back]
-    #    render :new
+    # @task.user_id = current_user.id
+    # @label = @task.labels.
+    @task = current_user.tasks.build(task_params)
+    # binding.pry
+    # @task_labels = @task.labels.build(task_params)
     if @task.save
-      # @task = current_user.tasks.build(picture_params)
+      # @task.user_id = current_user.id
       redirect_to tasks_path, notice: 'タスクを投稿しました'
     else
       render :new
     end
   end
 
-  # def confirm
-  #   @task = current_user.tasks.build(task_params)
-  #   render :new if @task.invalid?  
-  # end
   def update
     if @task.update_attributes(task_params)
       flash[:success] = "タスクを更新しました"

@@ -32,9 +32,9 @@
     <th>ステータス</th>
     <th>優先順位</th>
     <th>ラベル</th>
-    <th>詳細</th>
-    <th>編集</th>
-    <th>削除</th>
+    <th>各種ボタン</th>
+    <%# <th>編集</th>
+    <th>削除</th> %>
   </thead>
   <tbody>
     <% @tasks.each do |form| %>
@@ -45,11 +45,17 @@
           <td><%= form.endtime_at %></td>
           <td><%= form.status %></td>
           <td><%= form.priority %></td>
-          <%= form.label :search_label, "Label" %>
-          <%= form.select :search_label, Label.pluck(:name, :id), { include_blank: 'Please select' } %> 
-          <td><%= link_to '詳細', task_path(form.id) %></td>
-          <td><%= link_to '編集', edit_task_path(form.id) %></td>
-          <td><%= link_to '削除', task_path(form.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+          <% form.labels.each do |label| %>
+            <%= label.name %>
+          <% end %>
+          </td>
+          <%# <%= form.task_labels :search_label, "Label" %>
+          <%# <%= form.select :search_label, Label.pluck(:name, :id), { include_blank: 'Please select' } %> 
+          <td><%= link_to '詳細', task_path(form.id) %>
+          <%= link_to '編集', edit_task_path(form.id) %>
+          <%= link_to '削除', task_path(form.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
         </tr>
     <% end %>
   </tbody>
