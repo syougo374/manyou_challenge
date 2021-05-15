@@ -30,8 +30,13 @@
   <br>
   <%= form.select :priority,  Task.priorities.keys %>
   <br>
-  
+
+    <% Label.all.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
+      <label class='badge badge-secondary'><%= label.name %></label>
+    <% end %>
   <br>
+  
   <% if action_name == 'new' %>
   <%= form.submit '投稿する' %>
   <% else %>

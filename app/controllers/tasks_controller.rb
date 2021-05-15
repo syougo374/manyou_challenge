@@ -4,9 +4,10 @@ class TasksController < ApplicationController
 
   def index
     # @tasks = Task.all.order(params[:sort_expired])
+    # binding.irb
     if params[:sort_expired]
       @tasks = Kaminari.paginate_array(Task.all.order(endtime_at: :desc)).page(params[:page]).per(3)  
-
+      
     elsif params[:sort_priority] 
       @tasks = Kaminari.paginate_array(current_user.tasks.order(priority: :desc)).page(params[:page]).per(3)
 
@@ -25,6 +26,7 @@ class TasksController < ApplicationController
 
       else
         @tasks = Kaminari.paginate_array(current_user.tasks.order(id: :desc)).page(params[:page]).per(3)
+        @tasks << @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
       end
       
     else
@@ -85,7 +87,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title,:content,:daytime,:endtime_at,:status,:priority)
+    params.require(:task).permit(:title,:content,:daytime,:endtime_at,:status,:priority,:user_id, {label_ids: [] })
     
   end
 
