@@ -9,6 +9,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
       it '作成したユーザーが表示される' do
         visit new_user_path
         expect(new_user_path).to eq new_user_path
+        # binding.irb
         fill_in 'user[name]',with: 'つる'
         fill_in 'user[email]',with: 'turu@docomo.ne.jp'
         fill_in 'user[password]',with: 'password'
