@@ -3,6 +3,7 @@ class Task < ApplicationRecord
   validates :content, presence: true
   validates :daytime, presence: true
   belongs_to :user
+  has_many :labels
   has_many :task_labels, dependent: :destroy
   has_many :labels, through: :task_labels
   # default_scope -> { order(created_at: :desc) }

@@ -13,8 +13,8 @@
   <%= form.select :search_status, Task.statuses.keys, { include_blank: '選択してください'} %></p>
   <p class="input"><%= form.label :search_priority, "優先順位" %>
   <%= form.select :search_priority, Task.priorities.keys, { include_blank: '選択してください'} %></p>
-  <p class="input"><%= form.label :search_label, "ラベル" %>
-  <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+  <p class="input"><%= form.select :search_label, "ラベル" %>
+  <%= form.select :search_label, Label.pluck(:name, :id), { include_blank: '選択してください' } %>
   <p class="input"><%= form.submit "検索", name: "search" %></p>
   <% end %>
   </div>
