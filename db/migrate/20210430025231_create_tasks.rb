@@ -9,5 +9,6 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.integer :status, default: 1, null: false
       t.timestamps
     end
+    add_index :tasks, :title
   end
 end

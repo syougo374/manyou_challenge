@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2021_05_14_200816) do
   create_table "task_labels", force: :cascade do |t|
     t.bigint "task_id"
     t.bigint "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["label_id"], name: "index_task_labels_on_label_id"
     t.index ["task_id"], name: "index_task_labels_on_task_id"
   end
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_05_14_200816) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.index ["title"], name: "index_tasks_on_title"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -48,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_05_14_200816) do
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email"
   end
 
   add_foreign_key "task_labels", "labels"
