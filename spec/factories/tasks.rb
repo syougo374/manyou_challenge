@@ -6,6 +6,8 @@ FactoryBot.define do
     endtime_at {'002020-10-07'}   
     status { 1 }
     priority { 1 }
+    # labels {'喜'}
+
     association :user
   end
   factory :task2,class: Task do
@@ -15,6 +17,9 @@ FactoryBot.define do
     endtime_at {'002020-10-10'}
     status { 2 }
     priority { 2 }
+    # label2 = create(:label2)
+    # label2 = create(:label2)
+    # task2.task_label << build(:task_label, task: task2, label: label2)
     association :user
   end
   factory :task3,class: Task do
@@ -24,6 +29,8 @@ FactoryBot.define do
     endtime_at {'002020-10-06'}
     status { 3 }
     priority { 3 }
+    # labels {'喜'}
+
     association :user
   end
 end
