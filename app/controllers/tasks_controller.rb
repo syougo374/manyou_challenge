@@ -76,7 +76,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    
+    # binding.irb
   end
 
   def edit
@@ -88,7 +88,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title,:content,:daytime,:endtime_at,:status,:priority,:user_id, {label_ids: [] })
+    params.require(:task).permit(:title,:content,:daytime,:endtime_at,:status,:priority,{label_ids: [] })
     
   end
 
