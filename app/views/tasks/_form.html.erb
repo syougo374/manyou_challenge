@@ -31,7 +31,7 @@
   <%= form.select :priority,  Task.priorities.keys %>
   <br>
 
-    <% Label.all.each do |label| %>
+  <% Label.all.each do |label| %>
       <%= form.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
       <label class='badge badge-secondary'><%= label.name %></label>
     <% end %>
@@ -43,3 +43,7 @@
   <%= form.submit '更新する' %>
   <% end %>
 <% end %>
+
+
+<%# text = "私の誕生日は1989年11月26日です"
+ m = /(\d+年\d+)月(\d+)日/.match(text) %>
