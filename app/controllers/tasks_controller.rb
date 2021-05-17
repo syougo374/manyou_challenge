@@ -21,8 +21,11 @@ class TasksController < ApplicationController
         @tasks = Kaminari.paginate_array(current_user.tasks.search_status(params[:search_status])).page(params[:page]).per(3)
         
       elsif params[:search_priority].present?
-        binding.irb
+        # binding.irb
         @tasks = Kaminari.paginate_array(current_user.tasks.search_priority(params[:search_priority])).page(params[:page]).per(3)
+      elsif params[:search_label].present?
+        # binding.irb
+        @tasks = Kaminari.paginate_array(current_user.tasks.search_label(params[:search_label])).page(params[:page]).per(3)
         
       else
         @tasks = Kaminari.paginate_array(current_user.tasks.order(id: :desc)).page(params[:page]).per(3)
