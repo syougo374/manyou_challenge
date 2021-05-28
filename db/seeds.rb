@@ -2,21 +2,17 @@ User.create(
   name: "sample",
   email: "sample@example.com",
   password: "password",
-  #admin: true
+  admin: true
   )
 
-# Label.create([
-#   { name: '楽しい' },
-#   { name: '辛い' },
-#   { name: '重要'},
-#   { name: 'なんとなく'},
-#   { name: 'できれば'},
-#   { name: '難題'},
-#   { name: '簡単'},
-#   { name: '恐ろしい'},
-#   { name: '世も末'},
-#   { name: 'ありえない'},
-#   ])
+Label.create([
+  { name: '喜' },
+  { name: '怒' },
+  { name: '哀'},
+  { name: '楽'},
+  ])
+
+  
 
 # i = 1
 # 10.times do
@@ -31,25 +27,25 @@ User.create(
 # end
 
 
-# 10.times do
+# 10.times do |i|
 #   i = 1
 #   d1 = Date.parse("2021/04/13")
 #   d2 = Date.parse("2021/08/30")
 #   date = Random.rand(d1..d2)
 #   title = ('a'..'z').to_a.shuffle[1..11].join
 #   content = ('A'..'Z').to_a.shuffle[1..15].join
-#   status = Random.rand(0..2)
-#   priority = Random.rand(0..2)
+#   status = Random.rand(1..2)
+#   priority = Random.rand(1..2)
 #   user_id = Random.rand(1..8)
 #   Task.create(
 #     title: title,
 #     content: content,
-#     endtime:  date,
+#     endtime_at:  date,
 #     status: status,
 #     priority: priority,
 #     user_id: user_id
 #   )
-#   i += 1
+  
 # end
 
 # task_id = 1

@@ -13,8 +13,10 @@
   <%= form.select :search_status, Task.statuses.keys, { include_blank: '選択してください'} %></p>
   <p class="input"><%= form.label :search_priority, "優先順位" %>
   <%= form.select :search_priority, Task.priorities.keys, { include_blank: '選択してください'} %></p>
+  <p class="input"><%= form.label :search_label, "ラベル" %>
+  <%= form.select :search_label, Label.pluck(:name, :id), { include_blank: '選択してください' } %>
   <p class="input"><%= form.submit "検索", name: "search" %></p>
-  <% end %>
+<% end %>
   </div>
   </ul>
   </button>
@@ -29,12 +31,12 @@
     <th>期限</th>
     <th>ステータス</th>
     <th>優先順位</th>
-    <th>詳細</th>
-    <th>編集</th>
-    <th>削除</th>
+    <th>ラベル</th>
+    <th>各種ボタン</th>
+    <%# <th>編集</th>
+    <th>削除</th> %>
   </thead>
   <tbody>
-  
     <% @tasks.each do |form| %>
         <tr class="task_row">
           <td><%= form.daytime %></td>
@@ -43,9 +45,17 @@
           <td><%= form.endtime_at %></td>
           <td><%= form.status %></td>
           <td><%= form.priority %></td>
-          <td><%= link_to '詳細', task_path(form.id) %></td>
-          <td><%= link_to '編集', edit_task_path(form.id) %></td>
-          <td><%= link_to '削除', task_path(form.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+          <% form.labels.each do |label| %>
+            <%= label.name %>
+          <% end %>
+          </td>
+          <%# <%= form.task_labels :search_label, "Label" %>
+          <%# <%= form.select :search_label, Label.pluck(:name, :id), { include_blank: 'Please select' } %> 
+          <td><%= link_to '詳細', task_path(form.id) %>
+          <%= link_to '編集', edit_task_path(form.id) %>
+          <%= link_to '削除', task_path(form.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
         </tr>
     <% end %>
   </tbody>
