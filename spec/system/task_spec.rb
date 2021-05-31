@@ -14,6 +14,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
+        # binding.irb
         click_button 'タスクを追加する'
         fill_in 'task[daytime]',with: '002020-10-07'
         fill_in 'task[title]', with: 'test_task55'
@@ -23,14 +24,16 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_button '投稿する'
         expect(page).to have_content 'test_task55'
         expect(page).to have_content 'content_test55'
+
+
+        
         expect(page).to have_content '着手'
       end
     end
   end
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
-      it '作成済みのタスク一覧が表示される' do
-        
+      it '作成済みのタスク一覧が表示される' do      
         expect(current_path).to eq "/tasks"
         expect(page).to have_content 'タスク'
         expect(page).to have_content 'タスク2'

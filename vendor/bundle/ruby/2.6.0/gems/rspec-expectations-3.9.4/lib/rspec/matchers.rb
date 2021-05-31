@@ -960,6 +960,7 @@ module RSpec
       when HAS_REGEX
         BuiltIn::Has.new(method, *args, &block)
       else
+        fill_in 'task[content]', with: 'content_test55'
         super
       end
     end
